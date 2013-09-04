@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href='__PUBLIC__/Css/demo_table.css' />
+    <load href='__PUBLIC__/Css/demo_table_jui.css' />
+    <load href='__PUBLIC__/Css/demo_page.css' />
+    <load href='__PUBLIC__/Css/jqtreetable.css' />
+    <load href='__PUBLIC__/Css/jquery-ui-1.8.4.custom.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <!--<load href="__PUBLIC__/Js/prototype.js" />-->
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.dataTables.js"></script>
+	<script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jQTreeTable.js"></script>
+
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('#example').dataTable(
+				{
+					"bPaginate": true,
+					//"sScrollX": "100%",
+					//"sScrollXInner": "110%",
+					"bInfo": true,
+					//"bAutoWidth": true,
+					"bFilter": true,
+					"sPaginationType": "full_numbers",
+					"bJQueryUI": true
+				}
+				);
+			});
+		</script>	
+</head>
+<body>
+
+    <script language="JavaScript">
+        function add() {
+            window.location.href = "__URL__/UserAdd";
+        }
+        function del(user) {
+            window.location.href = "__URL__/UserDelete/username/" + user;
+        }
+		function edit(user)
+		{
+			window.location.href = "__URL__/userEdit/username/" + user;
+		}
+        function complete(data, status) {
+            if (status == 1) {
+                $('list').removeChild($('div_' + data));
+            }
+        }
+    </script>
+<div id = "maincontent">    
+    <div class = "divSubTitle">
+			用户列表
+    </div>
+    <div id='DivSearch'><input type="button" value="新增用户" id="buttonOperatelong" onclick="add()">
+			<!--<ul class = "prenext">
+       <li> </li>
+       </ul>-->
+    </div>	 
+
+	   <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+			<thead>
+				<tr>
+					<th >
+						操作
+					</th>
+					<th>
+						用户名
+					</th>
+					<th>
+						昵称
+					</th>
+					<th>
+						角色名称
+					</th>
+				</tr>
+			</thead>
+			<tbody id="treet1">
+				<volist name="userList" id="vo">
+					<tr class="odd">
+						<td class = "operatetd">
+						<input type="button" value="编 辑" class="small button" onClick="edit('{$vo.ACCOUNT}')">
+						<input type="button" value="删 除" class="small button" onClick="del('{$vo.ACCOUNT}')">
+						</td>
+						<td>{$vo.ACCOUNT}</td>
+						<td>{$vo.NICKNAME}</td>
+						<td>{$vo.REMARK}</td>
+					</tr>
+				</volist>
+			</tbody>
+		</table>	
+	</div>	  
+</body>
+</html>

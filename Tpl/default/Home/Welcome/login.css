@@ -1,0 +1,63 @@
+
+
+
+
+body{
+    background-color:  #eaeeef;
+    
+}
+
+fieldset {
+    background-color: #ebeff0;
+    margin: 5em 0;
+    padding: 1em 1em 1em 1em;
+    border: 1px solid rgb(190,190,190);
+}
+    fieldset input[type="text"], input[type="password"], input[type="file"]  {
+        border: 1px solid #ccc;
+        padding: 2px;
+        font-size: 1.2em;
+        color: #444;
+        width: 300px;
+    }
+    fieldset legend {
+        margin-top: 10em;
+        font-size: 1.1em;
+        font-weight: bold;
+        padding: 2px 4px 1px 4px;
+    }
+/*
+.input-text{
+    padding-top: 2px;
+}
+*/
+/* HEADINGS
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5em;
+    color: #006600;
+}
+
+h1, h2 {
+    font-size: 1.5em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+
+
+/*
+unicode编码
+*/

@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href='__PUBLIC__/Css/demo_page.css' />
+    <load href='__PUBLIC__/Css/demo_table.css' />
+    <load href='__PUBLIC__/Css/demo_table_jui.css' />
+    <load href='__PUBLIC__/Css/jqtreetable.css' />
+    <load href='__PUBLIC__/Css/jquery-ui-1.8.4.custom.css' />
+        
+        
+    <load href="__PUBLIC__/Js/Base.js" />
+    <!--<load href="__PUBLIC__/Js/prototype.js" />-->
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+
+    <script src="__PUBLIC__/Js/jquery.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        var oTable;
+        var giRedraw = false;
+        /* Formating function for row details */
+        function fnFormatDetails(oTable, nTr) {
+            var aData = oTable.fnGetData(nTr);
+            var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+            sOut += '<tr><td>可选：</td><td>' + aData[6] + '</td></tr>';
+            sOut += '<tr><td>取值范围：</td><td>' + aData[7] + '</td></tr>';
+            sOut += '<tr><td>说明：</td><td>' + aData[8] + '</td></tr>';
+            sOut += '<tr><td>引用编号：</td><td>' + aData[9] + '</td></tr>';
+            sOut += '</table>';
+
+            return sOut;
+        }
+        $(document).ready(function() {
+
+
+            /*
+            * Insert a 'details' column to the table
+            */
+            var nCloneTh = document.createElement('th');
+            nCloneTh.className = "thDetail";
+            var nCloneTd = document.createElement('td');
+            nCloneTd.innerHTML = '<img src="__PUBLIC__/Images/details_open.png">';
+            nCloneTd.className = "center";
+
+            $('#example thead tr').each(function() {
+                this.insertBefore(nCloneTh, this.childNodes[0]);
+            });
+
+            $('#example tbody tr').each(function() {
+                this.insertBefore(nCloneTd.cloneNode(true), this.childNodes[0]);
+            });
+            /* Add a click handler to the rows - this could be used as a callback */
+            $("#example tbody").click(function(event) {
+                $(oTable.fnSettings().aoData).each(function() {
+                    $(this.nTr).removeClass('row_selected');
+                });
+                $(event.target.parentNode).addClass('row_selected');
+            });
+            /* Add a click handler for the delete row */
+            //            $('#delete').click(function() {
+            //                var anSelected = fnGetSelected(oTable);
+            //                alert('11111111111111111');
+            //                //oTable.fnDeleteRow(anSelected[0]);
+            //            });
+            oTable = $('#example').dataTable(
+            {
+                "bPaginate": true,
+                //"sScrollX": "100%",
+                //"sScrollY": 200,
+                //"sScrollXInner": "110%",
+                "bInfo": true,
+                //"bAutoWidth": true,
+                "bFilter": true,
+                "sPaginationType": "full_numbers",
+								"bJQueryUI": true,
+                "aoColumnDefs":
+                [
+                //{ "bSearchable": false, "bVisible": false, "aTargets": [3] },
+						{"bVisible": false, "aTargets": [7] },
+						{ "bVisible": false, "aTargets": [8] },
+						{ "bVisible": false, "aTargets": [9] }
+						
+				]
+            }
+            );
+            /* Add event listener for opening and closing details
+            * Note that the indicator for showing which row is open is not controlled by DataTables,
+            * rather it is done here
+            */
+            $('#example tbody td img').live('click', function() {
+                var nTr = this.parentNode.parentNode;
+                if (this.src.match('details_close')) {
+                    /* This row is already open - close it */
+                    this.src = "__PUBLIC__/Images/details_open.png";
+                    oTable.fnClose(nTr);
+                }
+                else {
+                    /* Open this row */
+                    this.src = "__PUBLIC__/Images/details_close.png";
+                    oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
+                }
+            });
+        });
+        /* Get the rows which are currently selected */
+        function fnGetSelected(oTableLocal) {
+            var aReturn = new Array();
+            var aTrs = oTableLocal.fnGetNodes();
+
+            for (var i = 0; i < aTrs.length; i++) {
+                if ($(aTrs[i]).hasClass('row_selected')) {
+                    aReturn.push(aTrs[i]);
+                }
+            }
+            return aReturn;
+        }
+    </script>
+
+    <script language="JavaScript">
+		$(document).ready(function(){
+
+				            $('.checkbox').click(
+                    function() {
+                        if ($(this).attr("checked") == "checked") { // 全选
+                            //alert('选择');
+
+                        }
+                        else {
+                            //alert('取消选择');
+                            if ($('#chkAll').attr("checked") == "checked") {
+                                $('#chkAll').removeAttr("checked");
+                            }
+                        }
+                        //$(this).attr({ checked: "checked" });
+                    }
+                    );
+
+
+            $('#chkAll').click(
+            function() {
+                if ($(this).attr("checked") == "checked") { // 全选
+                    $('.checkbox').each(
+                    function() {
+                        $(this).attr({ checked: "checked" });
+                    }
+                    );
+                    //alert('全选');
+                }
+                else {
+                    $('.checkbox').each(
+                    function() {
+                        //$(this).attr({ checked: '' });
+                        $(this).removeAttr("checked");
+                    }
+                    );
+                    //alert('取消全选');
+                }
+            }
+            );
+				
+				//修改记录
+				$('#btnlog').click(function() {
+					var arrChk=$("input[name='checkhead']:checked"); 
+                    if ($(arrChk).length > 1) {
+                        alert('一次只能选择一项查看');
+                        return;
+                    }
+					if ($(arrChk).length <= 0) {
+                        alert('请先选择要查看的项!');
+                        return;
+                    }
+				    var vid = "";
+				    $(".checkbox").each(
+                      function() {
+                        if ($(this).attr("checked") == "checked") {
+
+                             vid = $(this).attr("editrecord");
+                         }
+                     }
+                     );
+				    if (vid != "") {
+				        log(vid);
+				    } else {
+				        alert("该项没有修改记录！");
+				    }
+				});
+
+			});
+    
+        
+        function log(rid) {
+
+            window.location.href = "__URL__/ChangeLogIndex/id/" + rid;
+        }
+        function exportData(cid) {
+
+            window.location.href = "__URL__/exportInfoClassData/cid/" + cid;
+        }
+        function complete(data, status) {
+            if (status == 1) {
+                $('list').removeChild($('div_' + data));
+            }
+        }
+    </script>
+
+</head>
+<body  id = "bodycontent">
+  <div id = "maincontent">  
+
+    <if condition="$InfoClass['CLASSNAME'] neq ''">
+				<div class = "divSubTitle">
+					{$InfoClass['CLASSNAME']}
+		    </div>
+         <else />
+				<div class = "divSubTitle">
+					{$className}
+		    </div>         
+         </if>
+    <div id='DivSearch'>
+    
+            <input type="button" value="修改记录" class="buttonOperatelong" id="btnlog">
+			<input type="button" value="导出" class="buttonOperate" onclick="exportData('{$icid}')">
+</div>
+    <div class="divTable">
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+            <thead>
+                <tr>
+                    <th >
+						<input type="checkbox" id="chkAll">
+                    </th>
+                    <th>
+                        编号
+                    </th>
+                    <th>
+                        数据项名
+                    </th>
+                    <th>
+                        中文简称
+                    </th>
+                    <th>
+                        类型
+                    </th>
+                    <th>
+                        长度
+                    </th>
+                    <th>
+                        可选
+                    </th>
+                    <th>
+                        取值范围
+                    </th>
+                    <th>
+                        说明
+                    </th>
+                    <th>
+                        引用编号
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="treet1">
+                <volist name="list" id="vo">
+                <tr >
+                    <td class = "tdCheck">
+                        <input type="checkbox" name="checkhead" class ="checkbox" contentid = "{$vo.ID}" contentcid = "{$vo.CID}" editrecord = "{$vo.EDITRECORDID}">
+					</td>
+	                <td>{$vo.ID}</td>
+	                <td>{$vo.NAME}</td>
+	                <td>{$vo.CNAME}</td>
+	                <td>{$vo.VTYPE}</td>
+	                <td>{$vo.LEN}</td>
+	                <td>{$vo.VSELECT}</td>
+	                <td>{$vo.SCOPE}</td>
+                    <td>{$vo.CMT}</td>
+                    <td>{$vo.REF}</td>
+                </tr>
+	        </volist>
+            </tbody>
+        </table>
+    </div>
+   </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <!--<load href="__PUBLIC__/Js/prototype.js" />-->
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+    <load href="__PUBLIC__/Js/jquery.js" />
+    <load href="__PUBLIC__/Js/mootools.js" />
+
+    <script type="text/javascript" language="JavaScript">
+        function add() {
+            ThinkAjax.sendForm('form1', '__URL__/insert', complete, 'result');
+            //$.post('__URL__/insert', $("#form1").serialize(),complete);
+        }
+        function addCollectionName() {
+            window.location.href = "__URL__/CollectionNameIndex";
+        }
+        function complete(data, status) {
+            if (status == 1)
+            //if (status=="success")
+            {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+        function clear() {
+            // $("#name")[0].value = "";
+            //$("#tbname")[0].value = "";
+            //$("#comment")[0].value = "";
+            a = 1;
+            b = 2;
+
+        }
+    </script>
+
+</head>
+<body id = "bodycontent">
+    <div id = "maincontent"> 
+	    <div class = "divSubTitle">
+				添加新项
+	    </div>
+			<div id="divSubTitleTip">
+				在这里添加新的代码子集条目
+	    </div>
+    <form id="form1" name="form1" method='post' action="__URL__/insert">
+            <div class='DivOperateUpNoOperate'>
+        </div>
+    
+			<p>
+				<label class="labelLeft" >字段ID：</label>
+				<input type="text" name="id"  class="inputRight"
+				 value="">
+			</p>
+			<p>
+				<label class="labelLeft" >字段名称：</label>
+				<input type="text" name="name"  class="inputRight"
+				 value="">
+			</p>
+			<p>
+					<label class="labelLeft" >所属代码集：</label>
+						<select name="cid"  class = "selectorLayout">
+								<volist name='codeCollectionList' id='ccvo'>
+												 <if condition="$ccvo['CID'] eq $selectedCid">
+												 <option value ="{$ccvo.CID}" selected="selected">{$ccvo.NAME}</option>  
+												 <else/>
+												<option value ="{$ccvo.CID}">{$ccvo.NAME}</option>                 
+												 </if>
+										</volist>
+						</select>						
+			</p>
+			<p>
+					<label class="labelLeft" >上级代码：</label>
+                    <select name="upnodeID"   class = "selectorLayout">
+					 <option value =""></option>
+                        <volist name='NameList' id='nlvo'>
+						 <option value ="{$nlvo.ID}"> {$nlvo.NAME} </option> 
+					</volist>
+                    </select>					
+			</p>
+			<p>
+				<label class="highlabelLeft" >说明：</label>
+				<textarea name="comment" class="textareaRight">{$ccClass.CMT}</textarea>
+			</p>				
+        <div class='DivOperateDown'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate" value="清空">
+        </div>
+    </form>
+    </div>
+</body>
+</html>

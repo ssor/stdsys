@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <script type="text/javascript">
+        function save() {
+            ThinkAjax.sendForm('form1', '__URL__/update', complete, 'result');
+        }
+        function addClassName() {
+            window.location.href = "__URL__/InfoClassNameEdit";
+        }
+        function complete(data, status) {
+            if (status == 1) {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+    </script>
+
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <!--<load href="__PUBLIC__/Js/prototype.js" />-->
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+</head>
+<body  id = "bodycontent">
+    <div id="maincontent">
+        <div class="divSubTitle">
+            字段编辑
+        </div>
+        <div id="divSubTitleTip">
+            在这里进行字段编辑
+        </div>
+        <form id="form1" class="formInput" method='post' action="__URL__/InfoUpdate">
+        <div class='DivOperateUp'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate" value="清空">
+        </div>
+        <p>
+            <label class="labelLeft">
+                编号：</label>
+            <input type="text" name="itemId" class="inputRight" value="{$InfoClass.ID}" readonly="readonly">
+        </p>
+        <p>
+            <label class="labelLeft">
+                数据项名：</label>
+            <input type="text" name="name" class="inputRight" value="{$InfoClass.NAME}">
+        </p>
+        <p>
+            <label class="labelLeft">
+                中文简称：</label>
+            <input type="text" name="cName" class="inputRight" value="{$InfoClass.CNAME}">
+        </p>
+        <p>
+            <label class="labelLeft">
+                所属子集：</label>
+            <select name="icid"  class="selectorLayout">
+                <volist name='InfoClassNameList' id='icvo'>
+							 <if condition="$icvo['CID'] eq $InfoClass['CID']">
+							 <option value ="{$icvo.CID}" selected="selected">{$icvo.NAME}</option>  
+							 </if>
+						</volist>
+            </select>
+        </p>
+        <p>
+            <label class="labelLeft">
+                类型：</label>
+            <select name="type" class="selectorLayout">
+                <if condition="$InfoClass['VTYPE'] eq 'M'">
+								<option value ="M"  selected="selected">币值型</option>
+							<else/>
+								<option value ="M">币值型</option> 							
+							</if>
+                <if condition="$InfoClass['VTYPE'] eq 'C'">
+								<option value ="C"  selected="selected">字符型</option> 
+							<else/>
+								<option value ="C">字符型</option>    						
+							</if>
+                <if condition="$InfoClass['VTYPE'] eq 'N'">
+								<option value ="N"  selected="selected">数值型</option> 
+							<else/>
+								<option value ="N">数值型</option>                 
+							</if>
+                <if condition="$InfoClass['VTYPE'] eq 'B'">
+								<option value ="B" selected="selected">二进制型</option>                 
+							<else/>
+								<option value ="B">二进制型</option>                 
+							</if>
+                <if condition="$InfoClass['VTYPE'] eq 'T'">
+								<option value ="T" selected="selected">大文本型</option>                 
+							<else/>
+								<option value ="T">大文本型</option>                 
+							</if>
+            </select>
+        </p>
+        <p>
+            <label class="labelLeft">
+                长度：</label>
+            <input type="text" name="len" class="inputRight" value="{$InfoClass.LEN}">
+        </p>
+        <p>
+            <label class="labelLeft">
+                可选：</label>
+            <input type="text" name="select" class="inputRight" value="{$InfoClass.VSELECT}">
+        </p>
+        <p>
+            <label class="labelLeft">
+                取值范围：</label>
+            <input type="text" name="scope" class="inputRight" value="{$InfoClass.SCOPE}">
+        </p>
+        <p>
+            <label class="highlabelLeft">
+                说明：</label>
+            <textarea name="comment" class="textareaRight">{$InfoClass.CMT}</textarea>
+        </p>
+        <p>
+            <label class="labelLeft">
+                引用编号：</label>
+            <input type="text" name="ref" class="inputRight" value="{$InfoClass.REF}">
+        </p>
+        <div class='DivOperateDown'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate" value="清空">
+        </div>
+        </form>
+    </div>
+</body>
+</html>

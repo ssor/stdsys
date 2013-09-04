@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+    
+</head>
+<body>
+    <script type="text/javascript" charset="utf-8">
+
+ <!--
+        function save() {
+            ThinkAjax.sendForm('form1', '__URL__/update', complete, 'result');
+        }
+        function complete(data, status) {
+            if (status == 1) {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+ //-->
+        $(document).ready(function() {
+        if({$codeCollection}==1)
+        {
+        $("#codeCollection").attr({ checked: "checked" });
+        }
+        });
+        
+    </script>
+
+    <div id="maincontent">
+        <div class="divSubTitle">
+            修改用户信息
+        </div>
+        <div id="divSubTitleTip">
+            在这里更改用户信息
+        </div>
+        <form id="form1" class="formInput" method='post' action="__URL__/userUpdate">
+        
+                <div class='DivOperateUpNoOperate'>
+        </div>
+        <p>
+            <label class="labelLeft">
+                账号:</label>
+            <input type="text" name="username" class="inputRight" value="{$userInfo.ACCOUNT}"
+                readonly="readonly">
+        </p>
+        <p>
+            <label class="labelLeft">
+                用户名称:</label>
+            <input type="text" name="nickname" class="inputRight" value="{$userInfo.NICKNAME}">
+        </p>
+        <p>
+            <label class="labelLeft">
+                电子邮件:</label>
+            <input type="text" name="email" class="inputRight" value="{$userInfo.EMAIL}">
+        </p>
+        <p>
+            <label class="labelLeft">
+                所属角色:</label>
+            <select name="rolename" class="selectorLayout">
+                <volist name='roleList' id='vo'>
+							 <if condition="$vo['NAME'] eq $userInfo['ROLE_NAME']">
+								<option value ="{$vo.NAME}" selected="selected">{$vo.REMARK}</option> 
+							 <else/>
+								<option value ="{$vo.NAME}">{$vo.REMARK}</option> 
+							 </if>
+						</volist>
+            </select>
+        </p>
+        <p>
+            <label class="labelLeft">
+                订阅项目:</label>
+            <br>
+            <input type="checkbox" name="codeCollection" class = "chkLeft" id = "codeCollection"
+            <if condition="$codeCollection eq '1'"> checked=true   </if>
+            >
+            <label class = "lblRightOrder">数据集</label>
+            <br>
+            <input type="checkbox" name="class" class = "chkLeft" id ="class"
+                        <if condition="$class eq '1'">
+            checked=true
+            <else />
+            
+            </if>
+            >
+            <label class = "lblRightOrder">数据子类</label>
+            <br >
+            <input type="checkbox" name="rule" class = "chkLeft" id="rule"
+                                    <if condition="$rule eq '1'">
+            checked=true
+            <else />
+            
+            </if>
+            >
+            <label class = "lblRightOrder">编码规则</label>
+                        <br >
+            <input type="checkbox" name="interface" class = "chkLeft" id="interface"
+                                    <if condition="$rule eq '1'">
+            checked=true
+            <else />
+            
+            </if>
+            >
+            <label class = "lblRightOrder">接口规范</label>
+        </p>
+                <div class='DivOperateDown'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate" value="清空">
+        </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>数据导入页面</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href='__PUBLIC__/Css/demo_table.css' />
+
+    <script src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" charset="utf-8"> 
+			$(document).ready(function() {
+				$('#example').dataTable();
+			} );
+    </script>
+
+</head>
+<body>
+   
+    <td colspan="2" class="tLeft">
+
+     <div class = "divSubTitle">
+			<label class = "titleLable2">数据导入</label> 
+    </div>
+        <div class="divSubTitleTip">
+					<label class = "lableTitle">上传允许文件类型：xls</label> 
+				</div> 
+		<form id="Form1" method='post' action="__URL__/upload/ot/2" enctype="multipart/form-data">
+			<p>
+				<label class="labelLeft" >标准代码集名称导入：</label>
+				<br>
+				<input name="xlsfile" id="File1" type="file"  class="inputRight"
+				 value="">
+			</p>
+			<table cellpadding="3" cellspacing="3" width="450PX">
+					<tr>
+							<td class="tRight tTop">
+							</td>
+							<td class="tLeft tTop">
+									<div class="impBtn  fLeft">
+											<label>
+													标准代码集名称导入：</label>
+											<input name="xlsfile" id="File1" type="file" class="file huge" /></div>
+									<input type="submit" value="提交" class="button">
+							</td>
+					</tr>
+			</table>
+			<input type="submit" class="buttonLeft" value="保 存">
+		</form>
+		<form id="upload" method='post' action="__URL__/upload/ot/1" enctype="multipart/form-data">
+                    <table cellpadding="3" cellspacing="3" width="450PX">
+                        <tr>
+                            <td class="tRight tTop">
+                            </td>
+                            <td class="tLeft tTop">
+                                <div class="impBtn  fLeft">
+                                    <label>
+                                        标准代码集导入：</label>
+                                    <input name="xlsfile" id="xlsfile" type="file" class="file huge" /></div>
+                                <input type="submit" value="提交" class="button">
+                            </td>
+                        </tr>
+                    </table>
+                    </form>
+		<form id="Form2" method='post' action="__URL__/upload/ot/3" enctype="multipart/form-data">
+                <table cellpadding="3" cellspacing="3" width="450PX">
+                    <tr>
+                        <td class="tRight tTop">
+                        </td>
+                        <td class="tLeft tTop">
+                            <div class="impBtn  fLeft">
+                                <label>
+                                    编号规则：</label>
+                                <input name="xlsfile" id="File2" type="file" class="file huge" /></div>
+                            <input type="submit" value="提交" class="button">
+                        </td>
+                    </tr>
+                </table>
+                </form>
+		<form id="Form3" method='post' action="__URL__/upload/ot/4" enctype="multipart/form-data">
+                <table cellpadding="3" cellspacing="3" width="450PX">
+                    <tr>
+                        <td class="tRight tTop">
+                        </td>
+                        <td class="tLeft tTop">
+                            <div class="impBtn  fLeft">
+                                <label>
+                                    数据类名称导入：</label>
+                                <input name="xlsfile" id="File3" type="file" class="file huge" /></div>
+                            <input type="submit" value="提交" class="button">
+                        </td>
+                    </tr>
+                </table>
+                </form>
+		<form id="Form4" method='post' action="__URL__/upload/ot/5" enctype="multipart/form-data">
+                <table cellpadding="3" cellspacing="3" width="450PX">
+                    <tr>
+                        <td class="tRight tTop">
+                        </td>
+                        <td class="tLeft tTop">
+                            <div class="impBtn  fLeft">
+                                <label>
+                                    数据类基础数据导入：</label>
+                                <input name="xlsfile" id="File4" type="file" class="file huge" /></div>
+                            <input type="submit" value="提交" class="button">
+                        </td>
+                    </tr>
+                </table>
+                </form>
+</body>
+</html>

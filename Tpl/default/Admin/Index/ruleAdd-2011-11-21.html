@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <load href="__PUBLIC__/Js/prototype.js" />
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+</head>
+<body>
+
+    <script language="JavaScript">
+ <!--
+        function save() {
+            ThinkAjax.sendForm('form1', '__URL__/update', complete, 'result');
+        }
+        function complete(data, status) {
+            if (status == 1) {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+ //-->
+    </script>
+
+    <div id="maincontent">
+        <div class="divSubTitle">
+            编码规则
+        </div>
+        <div id="divSubTitleTip">
+            在这里添加新的编码规则
+        </div>
+        <form id="form1" class="formInput" method='post' action="__URL__/ruleInsert">
+        <div class='DivOperateUpNoOperate'>
+        </div>
+        <p>
+            <label class="labelLeft">
+                编号：</label>
+            <input type="text" name="rid" class="inputRight" value="">
+        </p>
+        <p>
+            <label class="labelLeft">
+                数据项名：</label>
+            <input type="text" name="name" class="inputRight" value="">
+        </p>
+        <p>
+            <label class="labelLeft">
+                中文简称：</label>
+            <input type="text" name="cName" class="inputRight" value="">
+        </p>
+        <p>
+            <label class="labelLeft">
+                类型：</label>
+            <!--<input type="text" name="vType" class="inputRight" value="">-->
+            <select name="vType" class="selectorLayout">
+                <option value="C">字符型</option>
+                <option value="N">数值型</option>
+                <option value="B">二进制型</option>
+                <option value="T">大文本型</option>
+                <option value="M">币值型</option>
+            </select>
+        </p>
+        <p>
+            <label class="labelLeft">
+                长度：</label>
+            <input type="text" name="len" class="inputRight" value="">
+        </p>
+        <p>
+            <label class="highlabelLeft">
+                说明：</label>
+            <textarea name="comment" class="textareaRight"></textarea>
+        </p>
+        <div class='DivOperateDown'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate" value="清空">
+        </div>
+        </form>
+    </div>
+</body>
+</html>

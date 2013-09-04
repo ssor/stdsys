@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href='__PUBLIC__/Css/demo_table.css' />
+
+    <script src="__PUBLIC__/Js/jquery.min.js"></script>
+    
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" charset="utf-8"> 
+		$(document).ready(function() {
+			//$(".buttonDownloadHugeFile").click(function() {
+			//        downloadFile();
+			//var tmpType = $(event.target).attr("tmpType");
+
+			//var tmpType = $("#codeCollectonName").attr("tmpType");
+			//downloadFile(tmpType);
+			//});
+		$("#codeCollectonName").click(function() {
+		var tmpType = $("#codeCollectonName").attr("tmpType");
+		downloadFile(tmpType);
+});
+$("#codeCollecton").click(function() {
+var tmpType = $("#codeCollecton").attr("tmpType");
+downloadFile(tmpType);
+});
+$("#rule").click(function() {
+var tmpType = $("#rule").attr("tmpType");
+		downloadFile(tmpType);
+});
+$("#className").click(function() {
+var tmpType = $("#className").attr("tmpType");
+		downloadFile(tmpType);
+});
+$("#class").click(function() {
+var tmpType = $("#class").attr("tmpType");
+		downloadFile(tmpType);
+});
+        }); 
+    function downloadFile(filename) {
+        window.location.href = "__URL__/downloadTmplate/tmp/" + filename;
+    }
+    </script>
+
+</head>
+<body id = "bodycontent">
+   
+	<div id = "maincontent">    
+
+     <div class = "divSubTitle">数据导入
+    </div>
+        <div id="divSubTitleTip">上传允许文件类型：xls
+				</div> 
+		<form class = "formSubmitHugeFile" id="Form1" method='post' action="__URL__/upload/ot/2" enctype="multipart/form-data">
+			<p>
+				<label class="labelSubmitHugeFile" >标准代码集名称导入：</label>
+				<input name="xlsfile" id="File1" type="file"  class="inputHugeFile">
+				<input type="submit" class="buttonSubmitHugeFile" value="提 交">
+				<input type="button" class="buttonDownloadHugeFile" value="下载模板" id = "codeCollectonName"  tmpType = "codeCollectonName" />
+			</p>
+
+		</form>
+		<form class = "formSubmitHugeFile" id="upload" method='post' action="__URL__/upload/ot/1" enctype="multipart/form-data">
+ 			<p>
+				<label class="labelSubmitHugeFile" >标准代码集导入：</label>
+				<input name="xlsfile" id="File1" type="file"  class="inputHugeFile">
+				<input type="submit" class="buttonSubmitHugeFile" value="提 交">
+				<input type="button" class="buttonDownloadHugeFile" value="下载模板"  id = "codeCollecton"  tmpType = "codeCollecton">
+			</p>    
+		</form>
+		<form class = "formSubmitHugeFile" id="Form2" method='post' action="__URL__/upload/ot/3" enctype="multipart/form-data">
+ 			<p>
+				<label class="labelSubmitHugeFile" >编号规则：</label>
+				<input name="xlsfile" id="File1" type="file"  class="inputHugeFile">
+				<input type="submit" class="buttonSubmitHugeFile" value="提 交">
+				<input type="button" class="buttonDownloadHugeFile" value="下载模板" id = "rule"  tmpType = "rule">
+			</p>     
+		</form>
+		<form class = "formSubmitHugeFile" id="Form3" method='post' action="__URL__/upload/ot/4" enctype="multipart/form-data">
+			<p>
+				<label class="labelSubmitHugeFile" >数据类名称导入：</label>
+				<input name="xlsfile" id="File1" type="file"  class="inputHugeFile">
+				<input type="submit" class="buttonSubmitHugeFile" value="提 交">
+				<input type="button" class="buttonDownloadHugeFile" value="下载模板" id = "className"   tmpType = "className">
+			</p>     
+		</form>
+		<form class = "formSubmitHugeFile" id="Form4" method='post' action="__URL__/upload/ot/5" enctype="multipart/form-data">
+			<p>
+				<label class="labelSubmitHugeFile" >数据类基础数据导入：</label>
+				<input name="xlsfile" id="File1" type="file"  class="inputHugeFile">
+				<input type="submit" class="buttonSubmitHugeFile" value="提 交">
+				<input type="button" class="buttonDownloadHugeFile" value="下载模板" id = "class"   tmpType = "class">
+			</p>  
+		</form>
+	</div>
+</body>
+</html>

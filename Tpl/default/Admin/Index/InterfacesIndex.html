@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href='__PUBLIC__/Css/demo_table.css' />
+    <load href='__PUBLIC__/Css/demo_table_jui.css' />
+    <load href='__PUBLIC__/Css/demo_page.css' />
+    <load href='__PUBLIC__/Css/jqtreetable.css' />
+    
+    <load href='__PUBLIC__/Css/jquery-ui-1.8.4.custom.css' />
+
+    <script src="__PUBLIC__/Js/jquery.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jQTreeTable.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#example').dataTable(
+				{
+				    "bPaginate": true,
+				    //"sScrollX": "100%",
+				    //"sScrollXInner": "110%",
+				    "bInfo": true,
+				    //"bAutoWidth": true,
+				    "bFilter": true,
+				    "sPaginationType": "full_numbers",
+				    "bJQueryUI": true
+				}
+				);
+        });
+        $(document).ready(function() {
+
+
+            $('.checkbox').click(
+                    function() {
+                        if ($(this).attr("checked") == "checked") { // 全选
+                            //alert('选择');
+
+                        }
+                        else {
+                            //alert('取消选择');
+                            if ($('#chkAll').attr("checked") == "checked") {
+                                $('#chkAll').removeAttr("checked");
+                            }
+                        }
+                        //$(this).attr({ checked: "checked" });
+                    }
+                    );
+
+
+            $('#chkAll').click(
+            function() {
+                if ($(this).attr("checked") == "checked") { // 全选
+                    $('.checkbox').each(
+                    function() {
+                        $(this).attr({ checked: "checked" });
+                    }
+                    );
+                    //alert('全选');
+                }
+                else {
+                    $('.checkbox').each(
+                    function() {
+                        //$(this).attr({ checked: '' });
+                        $(this).removeAttr("checked");
+                    }
+                    );
+                    //alert('取消全选');
+                }
+            }
+            );
+
+            //删除
+            $('#btndelete').click(function() {
+				var arrChk=$("input[name='checkhead']:checked"); 
+                    if ($(arrChk).length < 1) {
+                        alert('请先选择要删除的项！');
+                        return;
+                    }
+                var strs = "";
+                $(".checkbox").each(
+             function() {
+                 //   strs = $(this).attr("id");
+                 if ($(this).attr("checked") == "checked") {
+                     if (strs != "") {
+                         strs += "?";
+                     }
+                     strs += $(this).attr("filename");
+                 }
+             }
+             );
+                if (strs != "") {
+                    deleteFile(strs);
+                } else {
+                    alert("请先选择要删除的项！");
+                }
+
+            });
+
+            $("#btndownload").click(function() {
+				var arrChk=$("input[name='checkhead']:checked"); 
+                    if ($(arrChk).length > 1) {
+                        alert('不能同时下载多个文件，请选择一个文件下载！');
+                        return;
+                    }
+					if ($(arrChk).length <= 0) {
+                        alert('请先选择要下载文件！!');
+                        return;
+                    }
+                var strs = "";
+                $(".checkbox").each(
+             function() {
+                 //   strs = $(this).attr("id");
+                 if ($(this).attr("checked") == "checked") {
+                     strs = $(this).attr("filename");
+                 }
+             }
+             );
+                if (strs != "") {
+                    downloadFile(strs);
+                    //这里将得到的数据发送到服务器
+                    // alert(strs);
+                } else {
+                    alert("请先选择要下载的文件！");
+                }
+
+            });
+        });
+        function deleteFile(fileName) {
+
+            var r = confirm("确定要删除吗？");
+            if (r == true) {
+                window.location.href = "__URL__/InterfaceDelete/fn/" + fileName;
+            
+            }
+
+        }
+        function downloadFile(filename) {
+            window.location.href = "__URL__/downloadInterface/fn/" + filename;
+        }
+    </script>
+
+</head>
+<body  id = "bodycontent">
+    <div id="maincontent">
+        <div class="divSubTitle">
+            接口规范管理
+        </div>
+        <div id="divSubTitleTip">
+            查看、上传和下载接口规范
+        </div>
+        <form class="formSubmitHugeFile" id="Form1" method='post' action="__URL__/uploadInterface"
+        enctype="multipart/form-data">
+        <p>
+			<label class="labelSubmitHugeFile">
+                选择要上传的文件：</label>
+            <input name="file" id="File1" type="file" class="inputHugeFile">
+            <input type="submit" class="buttonSubmitHugeFile" value="提 交">
+        </p>
+        <div id='DivSearch'>
+            <input type="button" value="下载" class="buttonOperate" id="btndownload">
+            <input type="button" value="删除" class="buttonOperate" id="btndelete">
+        </div>
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="chkAll">
+                    </th>
+                    <th>
+                        文件名称
+                    </th>
+                    <th>
+                        上传时间
+                    </th>
+                    <th>
+                        文件大小(Kb)
+                    </th>
+                    <th>
+                        作者
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="treet1">
+                <volist name="fileList" id="vo">
+                <tr class="odd">
+                   	<td class = "tdCheck">
+						<input type="checkbox" name="checkhead"  filename="{$vo.FILE_NAME}"  class ="checkbox">
+				    </td>
+		            <td>{$vo.FILE_NAME}</td>
+		            <td>{$vo.UPLOAD_DATE}</td>
+                    <td>{$vo.FILE_SIZE}</td>
+                    <td>{$vo.AUTHOR}</td>
+                </tr>
+	        </volist>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

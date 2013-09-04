@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <load href="__PUBLIC__/Js/prototype.js" />
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+</head>
+<body id = "bodycontent">
+
+    <script language="JavaScript">
+ <!--
+        function save() {
+            ThinkAjax.sendForm('form1', '__URL__/update', complete, 'result');
+        }
+        function complete(data, status) {
+            if (status == 1) {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+ //-->
+    </script>
+
+    <div id="maincontent">
+        <div class="divSubTitle">
+            修改密码
+        </div>
+        <div id="divSubTitleTip">
+            修改您的密码
+        </div>
+        <form id="form1" class="formInput" method='post' action="__URL__/updatepwd">
+        <div class='DivOperateUpNoOperate'>
+        </div>
+        <p>
+            <label class="labelLeft">
+                当前密码:</label>
+            <input type="password" name="oldpassword" class="inputRight" value="">
+        </p>
+        <p>
+            <label class="labelLeft">
+                输入新密码:</label>
+            <input type="password" name="password1" class="inputRight" value="">
+        </p>
+        <p>
+            <label class="labelLeft">
+                新密码确认:</label>
+            <input type="password" name="password2" class="inputRight" value="">
+        </p>
+        <div class='DivOperateDown'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate" value="清空">
+        </div>
+        </form>
+    </div>
+</body>
+</html>

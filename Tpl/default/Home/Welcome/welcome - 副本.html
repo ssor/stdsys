@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>数据标准管理</title>
+<load href='__PUBLIC__/Css/style.css' />
+<load href="__PUBLIC__/Js/Base.js"/>
+<load href="__PUBLIC__/Js/prototype.js"/>
+<load href="__PUBLIC__/Js/jquery.min.js"/>
+<load href="__PUBLIC__/Js/jquery.validate.js"/>
+<load href="__PUBLIC__/Js/artDialog.min.js"/>
+<load href="__PUBLIC__/Js/jquery.form.js"/>
+<load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+<load href="__PUBLIC__/Js/jquery.js" />
+<load href="__PUBLIC__/Js/mootools.js" />
+<load href="__PUBLIC__/Css/Site.css" rel="stylesheet" type="text/css">
+<!--[if IE 6]>
+		<script src="./Public/Js/DD_belatedPNG-min.js"  type="text/javascript" ></script>
+		<script type="text/javascript">
+		DD_belatedPNG.fix(' .login_box ');
+		</script>
+<![endif]-->
+<script language="JavaScript">
+ <!--
+	function login(){
+		ThinkAjax.sendForm('form1','__URL__/login',null,'result');
+	}
+
+	function complete(data,status){
+	/*
+		if (status==1)
+		{
+			setTimeout(function(){	window.location.href = '{:U("Admin/Index/index")}';},1000);
+		}
+		if(status == 2)
+		{
+			setTimeout(function(){	window.location.href = '{:U("Index/index")}';},1000);
+		}
+	*/
+	}
+ //-->
+ </script>	
+</head>
+<body>
+<div class="login_box">
+	<div class="login_form">
+		<div id="result" class="result none">
+			
+		</div>
+	</div>
+    <form method='post' name="form1" id="form1" action="__URL__/login">
+		<ul>
+    		<li>
+    			<label>account:</label>
+    			<input type="text" id="username" class="input-text" name="username" size="16">
+    		</li>
+    		<li>
+    			<label>password:</label>
+    			<input type="text" id="password" class="input-text" name="password" size="16">
+    		</li>
+    		<li>
+        		<!--<input type="button" value="登录" class="button" onClick="login()" > -->
+        		<input type="submit" value="登录" class="button" > 
+    		</li>
+		</ul>
+    </form>
+</div>
+<ul>
+	<volist name = 'list' id = 'vo'>
+		<li><img src="./Public/Images/point.gif"  align="absmiddle" /> <a href="classDef/index.php/Welcome/welcome/{$vo.id}">{$vo.title}</a>
+	</volist>
+</ul>
+</body>
+<!--
+<form method='post' name="form1" id="form1" action="">
+<div class="login_box">
+	<div class="login_title">Login</div>
+
+	<div class="login_left">
+	<img src="__PUBLIC__/Images/admin_logo.gif"   border="0" alt="" >
+	</div>
+
+	<div class="login_right">
+		<div class="msg">
+			<div id="result" class="result none">
+				
+			</div>
+		</div>
+		<div class="login_form">
+			<ul>
+			<li><label>account:</label><input type="text" id="username" class="input-text" name="username" size="16"></li>
+			<li><label>password:</label><input type="password" id="password" class="input-text" name="password" size="16"></li>
+			<li><label></label><input type="hidden" name="ajax" value="1">
+			<input type="button" value="登录" class="button" onClick="login()" > 
+			<input type="reset" name="reset" value="reset" class="button" id="reset" /></li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+</form>
+-->
+</html>

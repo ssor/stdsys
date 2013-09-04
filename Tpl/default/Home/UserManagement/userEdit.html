@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+
+</head>
+<body id = "bodycontent">
+
+    <script type="text/javascript" charset="utf-8">
+
+ <!--
+        function save() {
+            ThinkAjax.sendForm('form1', '__URL__/update', complete, 'result');
+        }
+        function complete(data, status) {
+            if (status == 1) {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+ //-->
+        $(document).ready(function() {
+       // alert({$codeCollection});
+        
+        if({$codeCollection}==1)
+        {
+            $("#codeCollection").attr({ checked: "checked" });
+        }
+        if({$class}==1)
+        {
+        $("#class").attr({ checked: "checked" });
+        }        
+         if({$rule}==1)
+        {
+        $("#rule").attr({ checked: "checked" });
+        } 
+         if({$interface}==1)
+        {
+        $("#interface").attr({ checked: "checked" });
+        }         
+        
+         if({$adminer}==1)
+        {
+        $("#adminer").attr({ checked: "checked" });
+        }        
+         if({$editor}==1)
+        {
+        $("#editor").attr({ checked: "checked" });
+        } 
+         if({$viewer}==1)
+        {
+        $("#viewer").attr({ checked: "checked" });
+        }                        
+ 
+        });
+        
+    </script>
+
+    <div id="maincontent">
+        <div class="divSubTitle">
+            修改用户信息
+        </div>
+        <div id="divSubTitleTip">
+            在这里更改用户信息
+        </div>
+        <form id="form1" class="formInput" method='post' action="__URL__/userUpdate">
+        <div class='DivOperateUpNoOperate'>
+        </div>
+        <p>
+            <label class="labelLeft">
+                账号:</label>
+            <input type="text" name="username" class="inputRight" value="{$userInfo.ACCOUNT}"
+                readonly="readonly">
+        </p>
+        <p>
+            <label class="labelLeft">
+                用户名称:</label>
+            <input type="text" name="nickname" class="inputRight" value="{$userInfo.NICKNAME}">
+        </p>
+        <p>
+            <label class="labelLeft">
+                电子邮件:</label>
+            <input type="text" name="email" class="inputRight" value="{$userInfo.EMAIL}">
+        </p>
+        <p>
+            <label class="labelLeft">
+                所属角色:</label>
+            <br>
+            <input type="checkbox" name="adminer" class="chkLeft" id="adminer">
+            <label class="lblRightOrder">
+                系统管理员</label>
+            <br>
+            <input type="checkbox" name="editor" class="chkLeft" id="editor">
+            <label class="lblRightOrder">
+                高级用户</label>
+            <br>
+            <input type="checkbox" name="viewer" class="chkLeft" id="viewer">
+            <label class="lblRightOrder">
+                普通用户</label>
+            <br>
+        </p>
+        <p>
+            <label class="labelLeft">
+                订阅项目:</label>
+            <br>
+            <input type="checkbox" name="codeCollection" class="chkLeft" id="codeCollection">
+            <label class="lblRightOrder">
+                数据集</label>
+            <br>
+            <input type="checkbox" name="class" class="chkLeft" id="class">
+            <label class="lblRightOrder">
+                数据子类</label>
+            <br>
+            <input type="checkbox" name="rule" class="chkLeft" id="rule">
+            <label class="lblRightOrder">
+                编码规则</label>
+            <br>
+            <input type="checkbox" name="interfac" class="chkLeft" id="interface">
+            <label class="lblRightOrder">
+                接口规范</label>
+        </p>
+        <div class='DivOperateDown'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate" value="清空">
+        </div>
+        </form>
+    </div>
+</body>
+</html>

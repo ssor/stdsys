@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href='__PUBLIC__/Css/demo_table.css' />
+    <load href='__PUBLIC__/Css/demo_table_jui.css' />
+    <load href='__PUBLIC__/Css/demo_page.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <load href='__PUBLIC__/Css/jquery-ui-1.8.4.custom.css' />
+    <!--<load href="__PUBLIC__/Js/prototype.js" />-->
+    <!--<load href="__PUBLIC__/Js/mootools.js" />-->
+    <!--<load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />-->
+
+    <script src="__PUBLIC__/Js/jquery.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#example').dataTable(
+            {
+                "bPaginate": true,
+                //"sScrollX": "100%",
+                //"sScrollXInner": "110%",
+                "bInfo": true,
+                //"bAutoWidth": true,
+                "bFilter": true,
+                "sPaginationType": "full_numbers",
+                "bJQueryUI": true
+            }
+            );
+        });
+    </script>
+
+</head>
+<body id = "bodycontent">
+
+    <script language="JavaScript">
+ <!--
+        function save() {
+            ThinkAjax.sendForm('form1', '__URL__/update', complete, 'result');
+        }
+        function del(cid) {
+            window.location.href = "__URL__/CustomClassDelete/name/" + cid;
+        }
+				function add(){
+						window.location.href = "__URL__/CustomClassAdd";
+
+				}
+        function complete(data, status) {
+            if (status == 1) {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+ //-->
+    </script>
+     <div id = "maincontent">  
+    <div class = "divSubTitle">
+			自定义类别管理
+    </div>
+    <div id='DivSearch'>
+		<input type="button" value="新 增" class="small button" onclick="add()">
+		</div>	
+    <div class="divTable">
+
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+            <thead>
+                <tr>
+                    <th class="operatetd">
+                        操作
+                    </th>
+                    <th>
+                        名称
+                    </th>
+                    <th>
+                        说明
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="list" id="vo">
+                <tr >
+                    <td class = "operatetdOne">
+
+                    <input type="button" value="删 除" class="small button" onClick="del('{$vo.NAME}')">
+                    </td>
+	                <td>{$vo.NAME}</td>
+                    <td>{$vo.CMT}</td>
+                </tr>
+	        </volist>
+            </tbody>
+        </table>
+    </div>
+	</div>
+</body>
+</html>

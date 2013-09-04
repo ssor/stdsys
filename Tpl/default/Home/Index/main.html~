@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>数据标准管理 </title>
+<meta name="Generator" content="EditPlus">
+<meta name="Copyright" content="Copyright (c) 2009 ThinkPHP.cn" />
+<meta name="Author" content="Liu21st">
+<meta name="Keywords" content="ThinkPHP,examples">
+<meta name="Description" content="ThinkPHP2.0 Examples">
+</head>
+
+<frameset frameborder="0" framespacing="0" border="0" rows="80, *">
+<<frame src="__URL__/top" name="top"  noresize scrolling='no' marginwidth="0" marginheight="0">
+<frameset   framespacing="0" border="0" cols="20%, *">
+<frame src="__URL__/menu"  name="menu" scrolling='true'>
+<frame src=""  name="frm_content">
+</frameset>
+<!--<frame src="footer.html" name="footer" frameborder="0" noresize scrolling='no' marginwidth="0" marginheight="0">-->
+</frameset>
+</html>

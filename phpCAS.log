@@ -1,0 +1,66 @@
+7840 .START ****************** [CAS.php:414]
+7840 .=> phpCAS::client('2.0', '211.68.70.10', 8002, 'sso') [WelcomeAction.class.php:28]
+7840 .|    => CASClient::CASClient('2.0', false, '211.68.70.10', 8002, 'sso', true) [CAS.php:315]
+7840 .|    <= ''
+7840 .<= ''
+7840 .=> phpCAS::setNoCasServerValidation() [WelcomeAction.class.php:29]
+7840 .<= ''
+7840 .=> phpCAS::isAuthenticated() [WelcomeAction.class.php:30]
+7840 .|    => CASClient::isAuthenticated() [CAS.php:975]
+7840 .|    |    => CASClient::wasPreviouslyAuthenticated() [client.php:791]
+7840 .|    |    |    no user found [client.php:895]
+7840 .|    |    <= false
+7840 .|    |    no ticket found [client.php:825]
+7840 .|    <= false
+7840 .<= false
+7840 .=> phpCAS::forceAuthentication() [WelcomeAction.class.php:32]
+7840 .|    => CASClient::forceAuthentication() [CAS.php:911]
+7840 .|    |    => CASClient::isAuthenticated() [client.php:686]
+7840 .|    |    |    => CASClient::wasPreviouslyAuthenticated() [client.php:791]
+7840 .|    |    |    |    no user found [client.php:895]
+7840 .|    |    |    <= false
+7840 .|    |    |    no ticket found [client.php:825]
+7840 .|    |    <= false
+7840 .|    |    => CASClient::redirectToCas(false) [client.php:695]
+7840 .|    |    |    => CASClient::getServerLoginURL(false, false) [client.php:912]
+7840 .|    |    |    |    => CASClient::getURL() [client.php:331]
+7840 .|    |    |    |    <= 'http://localhost/index.php'
+7840 .|    |    |    <= 'http://211.68.70.10:8002/sso/login?service=http%3A%2F%2Flocalhost%2Findex.php'
+7840 .|    |    |    Redirect to : http://211.68.70.10:8002/sso/login?service=http%3A%2F%2Flocalhost%2Findex.php
+7840 .|    |    |    exit()
+7840 .|    |    |    -
+7840 .|    |    -
+7840 .|    -
+B0FA .START ****************** [CAS.php:414]
+B0FA .=> phpCAS::client('2.0', '211.68.70.10', 8002, 'sso') [WelcomeAction.class.php:28]
+B0FA .|    => CASClient::CASClient('2.0', false, '211.68.70.10', 8002, 'sso', true) [CAS.php:315]
+B0FA .|    <= ''
+B0FA .<= ''
+B0FA .=> phpCAS::setNoCasServerValidation() [WelcomeAction.class.php:29]
+B0FA .<= ''
+B0FA .=> phpCAS::isAuthenticated() [WelcomeAction.class.php:30]
+B0FA .|    => CASClient::isAuthenticated() [CAS.php:975]
+B0FA .|    |    => CASClient::wasPreviouslyAuthenticated() [client.php:791]
+B0FA .|    |    |    no user found [client.php:895]
+B0FA .|    |    <= false
+B0FA .|    |    no ticket found [client.php:825]
+B0FA .|    <= false
+B0FA .<= false
+B0FA .=> phpCAS::forceAuthentication() [WelcomeAction.class.php:32]
+B0FA .|    => CASClient::forceAuthentication() [CAS.php:911]
+B0FA .|    |    => CASClient::isAuthenticated() [client.php:686]
+B0FA .|    |    |    => CASClient::wasPreviouslyAuthenticated() [client.php:791]
+B0FA .|    |    |    |    no user found [client.php:895]
+B0FA .|    |    |    <= false
+B0FA .|    |    |    no ticket found [client.php:825]
+B0FA .|    |    <= false
+B0FA .|    |    => CASClient::redirectToCas(false) [client.php:695]
+B0FA .|    |    |    => CASClient::getServerLoginURL(false, false) [client.php:912]
+B0FA .|    |    |    |    => CASClient::getURL() [client.php:331]
+B0FA .|    |    |    |    <= 'http://localhost/index.php'
+B0FA .|    |    |    <= 'http://211.68.70.10:8002/sso/login?service=http%3A%2F%2Flocalhost%2Findex.php'
+B0FA .|    |    |    Redirect to : http://211.68.70.10:8002/sso/login?service=http%3A%2F%2Flocalhost%2Findex.php
+B0FA .|    |    |    exit()
+B0FA .|    |    |    -
+B0FA .|    |    -
+B0FA .|    -

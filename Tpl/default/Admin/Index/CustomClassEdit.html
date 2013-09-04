@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href='__PUBLIC__/Css/demo_table.css' />
+    <load href='__PUBLIC__/Css/demo_table_jui.css' />
+    <load href='__PUBLIC__/Css/demo_page.css' />
+    <load href='__PUBLIC__/Css/jquery-ui-1.8.4.custom.css' />
+    <!--<load href="__PUBLIC__/Js/Base.js" />-->
+    <!--<load href="__PUBLIC__/Js/prototype.js" />-->
+    <!--<load href="__PUBLIC__/Js/mootools.js" />-->
+    <!--<load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />-->
+
+    <script src="__PUBLIC__/Js/jquery.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#cNameTable').dataTable(
+            {
+                "bPaginate": true,
+                //"sScrollX": "100%",
+                //"sScrollXInner": "110%",
+                "bInfo": true,
+                //"bAutoWidth": true,
+                "bFilter": true,
+                "sPaginationType": "full_numbers",
+                "bJQueryUI": true
+            }
+            );
+        });
+    </script>
+
+</head>
+<body id = "bodycontent">
+
+    <script language="JavaScript">
+        function save() {
+            ThinkAjax.sendForm('form1', '__URL__/update', complete, 'result');
+        }
+        function del(cid) {
+            window.location.href = "__URL__/CollectionNameDelete/cid/" + cid;
+        }
+        function complete(data, status) {
+            if (status == 1) {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+    </script>
+    <div id = "maincontent"> 
+	    <div class = "divSubTitle">
+				编辑{$class['NAME']}
+	    </div>
+			<div id="divSubTitleTip">
+				在这里编辑自定义代码集
+	    </div>
+        <form id="form1" method='post' action="__URL__/CustomClassUpdate">
+                <div class='DivOperateUpNoOperate'>        </div>
+        
+			<p>
+				<label class="labelLeft" >编号：</label>
+				<input type="text" name="cid" readonly = "readonly"  class="inputRight" value="{$class.CID}">
+			</p>
+
+			<p>
+				<label class="labelLeft" >名称：</label>
+				<input type="text" name="name"  class="inputRight" value="{$class.NAME}">
+			</p>
+			<p>
+				<label class="labelLeft" >所属类别：</label>
+				<input type="text" name="level"  class="inputRight" value="{$class.CL}">
+			</p>
+			<p >
+			<label class="highlabelLeft" >说明：</label>
+			<textarea name="comment" class="textareaRight" value = "{$class.CMT}"></textarea>
+			</p>			
+        <div class='DivOperateDown'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate" value="清空">
+        </div>
+        </form>
+    </div>
+</body>
+</html>

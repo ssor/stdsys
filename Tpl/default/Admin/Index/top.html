@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>数据标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <base target="frm_content" />
+</head>
+<body id="bodyTop">
+
+    <script language="JavaScript" charset="utf-8">
+        function logout() {
+            var r = confirm("确定要退出吗？")
+            if (r == true) {
+                top.location.href = '__ROOT__/index.php/Welcome/logout';
+                //top.location.href = window.location.pathname +'/Welcome/logout';
+            }
+        }
+        function closeWindow() {
+
+            var r = confirm("确定关闭窗口吗？")
+            if (r == true) {
+
+							  top.opener=null;
+                top.close();
+                //top.location.href = '__ROOT__/index.php/Welcome/logout';
+                //top.window.open('', '_parent', '');
+
+               //top.window.close();
+            }
+        }  
+    </script>
+
+    <!-- 头部区域 -->
+    <div id="topTitle">
+        <!--数据标准管理-->
+    </div>
+    <!-- 功能导航区 -->
+    <div id="divLogInfo">
+        <label>
+            欢迎您 {$_SESSION.nickname} !
+        </label>
+			<if condition = "$_SESSION.ROLE_COUNT neq '1'" >
+				<a href="__ROOT__/index.php/Welcome/changeRole">切换角色</a>
+			</if>
+        <if condition="$_SESSION.loginStyle eq 'local11'">
+	<a href="__ROOT__/index.php/UserManagement/changepwd">修改密码</a>
+</if>
+        <label>
+        </label>
+        <a href="javascript:void(null)" onclick="logout()">退出</a>
+    </div>
+    <div id="topBottom">
+    </div>
+</body>
+</html>

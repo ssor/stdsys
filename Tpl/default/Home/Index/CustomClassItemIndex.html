@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href='__PUBLIC__/Css/demo_table.css' />
+    <load href='__PUBLIC__/Css/demo_table_jui.css' />
+    <load href='__PUBLIC__/Css/demo_page.css' />
+    <load href='__PUBLIC__/Css/jqtreetable.css' />
+    <load href='__PUBLIC__/Css/jquery-ui-1.8.4.custom.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <!--<load href="__PUBLIC__/Js/prototype.js" />-->
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+
+    <script src="__PUBLIC__/Js/jquery.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#example').dataTable(
+            {
+                "bPaginate": true,
+                //"sScrollX": "100%",
+                //"sScrollXInner": "110%",
+                "bInfo": true,
+                //"bAutoWidth": true,
+                "bFilter": true,
+                "sPaginationType": "full_numbers",
+                "bJQueryUI": true
+            }
+            );
+        });
+        $(document).ready(function() {
+
+                $('.checkbox').click(
+                    function() {
+                        if ($(this).attr("checked") == "checked") { // 全选
+                            //alert('选择');
+
+                        }
+                        else {
+                            //alert('取消选择');
+                            if ($('#chkAll').attr("checked") == "checked") {
+                                $('#chkAll').removeAttr("checked");
+                            }
+                        }
+                        //$(this).attr({ checked: "checked" });
+                    }
+                    );
+
+
+                $('#chkAll').click(
+            function() {
+                if ($(this).attr("checked") == "checked") { // 全选
+                    $('.checkbox').each(
+                    function() {
+                        $(this).attr({ checked: "checked" });
+                    }
+                    );
+                    //alert('全选');
+                }
+                else {
+                    $('.checkbox').each(
+                    function() {
+                        //$(this).attr({ checked: '' });
+                        $(this).removeAttr("checked");
+                    }
+                    );
+                    //alert('取消全选');
+                }
+            }
+            );
+
+
+                //修改记录
+                $('#btnlog').click(function() {
+					var arrChk=$("input[name='checkhead']:checked"); 
+                    if ($(arrChk).length > 1) {
+                        alert('一次只能选择一项查看');
+                        return;
+                    }
+					if ($(arrChk).length <= 0) {
+                        alert('请先选择要查看修改记录的项!');
+                        return;
+                    }
+                    var vid = "";
+                    $(".checkbox").each(
+                      function() {
+                          if ($(this).attr("checked") == "checked") {
+
+                              vid = $(this).attr("editrecord");
+                          }
+                      }
+                     );
+                    if (vid != "") {
+                        log(vid);
+                    } else {
+                        alert("该项没有修改记录！");
+                    }
+                });
+
+        });
+    </script>
+
+</head>
+<body id = "bodycontent">
+    <!-- <script src = "http://www.w3cschool.cn/jquery.js"></script> -->
+    <!--<script src="__PUBLIC__/Js/jquery.js"></script>-->
+
+    <script language="JavaScript">
+
+        function log(rid) {
+
+            window.location.href = "__URL__/ChangeLogIndex/id/" + rid;
+        }
+        function kwSearch() {
+            kwo = $("#kwinput")[0];
+            valueK = kwo.value;
+            if (valueK == null) {
+                alert("请先输入要搜索的关键词！");
+                return;
+            }
+            window.location.href = "__URL__/seachKeyWord/kw/" + valueK + "/style/5";
+        }
+        function exportData(cid) {
+
+            window.location.href = "__URL__/exportCodeCollectionData/cid/" + cid;
+        }
+        function complete(data, status) {
+            if (status == 1) {
+                $('list').removeChild($('div_' + data));
+            }
+        }
+    </script>
+  <div id = "maincontent">  
+				<div class = "divSubTitle">
+					{$itemName}
+		    </div>
+    <div id='DivSearch'>
+            <input type="button" value="修改记录" class="buttonOperatelong" id="btnlog">
+            <input type="button" value="导出" class="buttonOperate" onclick="exportData('{$cid}')">
+    </div>
+    <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+        <thead>
+            <tr>
+                    <th>
+                        <input type="checkbox" id="chkAll">
+                    </th>
+                    <th>
+                        编号
+                    </th>
+                <th>
+                    名称
+                </th>
+                <th>
+                   内容 
+                </th>
+                <th>
+                    说明
+                </th>
+            </tr>
+        </thead>
+            <tbody id="treet1">
+            <volist name="list" id="vo">
+                <tr class="odd">
+						<td class = "tdCheck">
+                        <input type="checkbox" name = "checkhead"  class ="checkbox" contentid = "{$vo.ID}" contentcid = "{$vo.CID}" editrecord = "{$vo.EDITRECORDID}">
+						</td>
+	                <td>{$vo.ID}</td>
+	                <td>{$vo.NAME}</td>
+	                <td>{$vo.CONTENT}</td>
+                    <td>{$vo.CMT}</td>
+                </tr>
+	        </volist>
+        </tbody>
+    </table>
+	</div>
+</body>
+</html>

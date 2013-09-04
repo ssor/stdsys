@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <load href="__PUBLIC__/Js/prototype.js" />
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+	
+ <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+
+</head>
+<body id = "bodycontent">
+
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            //$('#selectFile').hide();
+            $('#btnUpdateFile').click(function(){
+				$("#selectFile").show();
+				});
+			
+        });
+    </script>
+
+    <div id="maincontent">
+        <div class="divSubTitle">
+            字段编辑
+        </div>
+        <div id="divSubTitleTip">
+            在这里进行字段的编辑
+        </div>
+        <form id="form1" class="formInput" method='post' action="__URL__/ruleUpdate"  enctype="multipart/form-data">
+        <div class='DivOperateUpNoOperate'>
+        </div>
+        <p>
+            <label class="labelLeft">
+                编号：</label>
+            <input type="text" name="rid" class="inputRight" value="{$CodeRuleClass.RULEID}"
+                readonly="readonly">
+        </p>
+        <p>
+            <label class="labelLeft">
+                名称：</label>
+            <input type="text" name="name" class="inputRight" value="{$CodeRuleClass.NAME}">
+        </p>
+		<p>
+			<label class="labelLeft">
+                当前文件：</label>
+            <input readonly="readonly" name="oldfile" class="inputRight" value = "{$CodeRuleClass.FILE_NAME}">
+			<!--<input type="button" value="更新" id="btnUpdateFile">-->
+			<div id="selectFile">
+				<label class="labelLeft">选择新文件：</label>
+				<input name="rulefile" id="rulefile" type="file" class="inputRight">		
+			</div>
+        </p>
+
+        <p>
+            <label class="highlabelLeft">
+                说明：</label>
+            <textarea name="comment" class="textareaRight">{$CodeRuleClass.CMT}</textarea>
+        </p>
+        <div class='DivOperateDown'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate" value="清空">
+        </div>
+        </form>
+    </div>
+</body>
+</html>

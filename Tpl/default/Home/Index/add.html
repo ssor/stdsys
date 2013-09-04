@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <!--<load href="__PUBLIC__/Js/prototype.js" />-->
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+    <load href="__PUBLIC__/Js/jquery.js" />
+    <load href="__PUBLIC__/Js/mootools.js" />
+
+    <script type="text/javascript" language="JavaScript">
+        function add() {
+            ThinkAjax.sendForm('form1', '__URL__/insert', complete, 'result');
+            //$.post('__URL__/insert', $("#form1").serialize(),complete);
+        }
+        function addCollectionName() {
+            window.location.href = "__URL__/CollectionNameEdit";
+        }
+        function complete(data, status) {
+            if (status == 1)
+            //if (status=="success")
+            {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+        function clear() {
+            // $("#name")[0].value = "";
+            //$("#tbname")[0].value = "";
+            //$("#comment")[0].value = "";
+            a = 1;
+            b = 2;
+
+        }
+    </script>
+
+</head>
+<body>
+    <div id = "maincontent"> 
+	    <div class = "divSubTitle">
+				添加新项
+	    </div>
+			<div id="divSubTitleTip">
+				在这里添加新的代码子集条目
+	    </div>
+    <form id="form1" name="form1" method='post' action="__URL__/insert">
+            <div class='DivOperateUpNoOperate'>
+                </div>
+    
+			<p>
+            <td class="tRight" width="12%">
+                字段ID：
+            </td>
+            <td class="tLeft">
+                <input type="text" name="id" style="height: 23px" class="large bLeft" value="">
+            </td>
+        </tr>
+        <tr>
+            <td class="tRight" width="12%">
+                字段名称：
+            </td>
+            <td class="tLeft">
+                <input type="text" name="name" style="height: 23px" class="large bLeft" value="">
+            </td>
+        </tr>
+        <tr>
+            <td class="tRight">
+                所属代码集：
+            </td>
+            <td>
+                <select name="cid">
+                    <volist name='codeCollectionList' id='ccvo'>
+                             <if condition="$ccvo['CID'] eq $selectedCid">
+                             <option value ="{$ccvo.CID}" selected="selected">{$ccvo.NAME}</option>  
+                             <else/>
+                            <option value ="{$ccvo.CID}">{$ccvo.NAME}</option>                 
+                             </if>
+                        </volist>
+                </select>
+                <input type="button" value=" + " onclick="addCollectionName()">
+            </td>
+        </tr>
+        <tr>
+            <td class="tRight tTop">
+                说明：
+            </td>
+            <td>
+                <textarea name="comment" class="huge bLeft" rows="8" cols="25">{$ccClass.CMT}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td width="2%">
+                <input type="submit" class="button" value="保 存" />
+            </td>
+            <td>
+                <input type="reset" class="button" value="清 空" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

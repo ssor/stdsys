@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>信息标准管理系统</title>
+    <script src="__PUBLIC__/Js/jquery.min.js"></script>
+<script language="JavaScript">
+window.onunload= function()
+　　　 {
+			//var warning=confirm("确认退出?"); 
+			//if(warning==true)
+			{
+				top.location.href = '__ROOT__/index.php/Welcome/logout';
+			}			
+　　　 }
+
+   </script>
+</head>
+
+<frameset frameborder="0" framespacing="0" border="0" rows="78, *,10">
+	<frame src="__URL__/top" name="top"  noresize scrolling='no' marginwidth="0" marginheight="0">
+
+	<frameset   framespacing="0" frameborder="0" border="0" cols="17%, *"  scrolling='no'>
+		<frame src="__URL__/menu"  name="menu" scrolling='no'>
+		<frame src="__URL__/welcome"  name="frm_content">
+
+	</frameset>
+
+	<frame src="__URL__/footer" name="footer" frameborder="0" noresize scrolling='no' marginwidth="0" marginheight="0">
+</frameset>
+</html>

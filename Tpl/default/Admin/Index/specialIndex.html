@@ -1,0 +1,477 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href='__PUBLIC__/Css/demo_table.css' />
+    <load href='__PUBLIC__/Css/demo_table_jui.css' />
+    <load href='__PUBLIC__/Css/demo_page.css' />
+    <load href='__PUBLIC__/Css/jqtreetable.css' />
+    <load href='__PUBLIC__/Css/jquery-ui-1.8.4.custom.css' />
+    <load href='__PUBLIC__/Css/treeTable.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <!--<load href="__PUBLIC__/Js/prototype.js" />-->
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jQTreeTable.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        function add(cid) {
+            window.location.href = "__URL__/add/cid/" + cid;
+        }
+        function edit(id, cid) {
+            window.location.href = "__URL__/edit/id/" + id + "/cid/" + cid;
+        }
+        /*
+        function del(id, cid) {
+        //ThinkAjax.send('__URL__/delete','ajax=1&id='+id,complete,'result');
+        window.location.href = "__URL__/delete/id/" + id + "/cid/" + cid;
+        }
+        */
+        function del(strs) {
+            //ThinkAjax.send('__URL__/delete','ajax=1&id='+id,complete,'result');
+            var r = confirm("确定要删除吗？");
+            if (r == true) {
+                window.location.href = "__URL__/delete/strs/" + strs;
+            }
+        }
+        function log(rid) {
+
+            window.location.href = "__URL__/ChangeLogIndex/id/" + rid;
+        }
+        function kwSearch() {
+            kwo = $("#kwinput")[0];
+            valueK = kwo.value;
+            if (valueK == null) {
+                alert("请先输入要搜索的关键词！");
+                return;
+            }
+            window.location.href = "__URL__/seachKeyWord/kw/" + valueK + "/style/1";
+        }
+        function exportData(cid) {
+            window.location.href = "__URL__/exportCodeCollectionData/cid/" + cid;
+        }
+        $(document).ready(function() {
+            $(".delbutton").click(function() {
+
+                var r = confirm("确定要删除吗？");
+                if (r == true) {
+                    cttid = $(event.target).attr("contentid");
+                    cttcid = $(event.target).attr("contentcid");
+                    del(cttid, cttcid);
+                }
+
+            });
+        });
+    </script>
+
+    <if condition="$bHierarchi eq '1'">
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+				 var map = [{$maps}];
+				var options = {openImg: "__PUBLIC__/Images/TreeTable/tv-collapsable.gif", shutImg: "__PUBLIC__/Images/TreeTable/tv-expandable.gif", leafImg: "__PUBLIC__/Images/TreeTable/tv-item.gif", lastOpenImg: "__PUBLIC__/Images/TreeTable/tv-collapsable-last.gif", lastShutImg: "__PUBLIC__/Images/TreeTable/tv-expandable-last.gif", lastLeafImg: "__PUBLIC__/Images/TreeTable/tv-item-last.gif", vertLineImg: "__PUBLIC__/Images/TreeTable/vertline.gif", blankImg: "__PUBLIC__/Images/TreeTable/blank.gif", collapse: false, column: 1, striped: true, highlight: true,  state:false};
+			   if(map!=null&&map.length>0)
+				{
+				  $("#treet1").jqTreeTable(map, options);
+				}
+				
+						        $('.checkbox').click(
+                    function() {
+                        if ($(this).attr("checked") == "checked") { // 全选
+                            //alert('选择');
+
+                        }
+                        else {
+                            //alert('取消选择');
+                            if ($('#chkAll').attr("checked") == "checked") {
+                                $('#chkAll').removeAttr("checked");
+                            }
+                        }
+                        //$(this).attr({ checked: "checked" });
+                    }
+                    );
+
+
+		        $('#chkAll').click(
+            function() {
+                if ($(this).attr("checked") == "checked") { // 全选
+                    $('.checkbox').each(
+                    function() {
+                        $(this).attr({ checked: "checked" });
+                    }
+                    );
+                    //alert('全选');
+                }
+                else {
+                    $('.checkbox').each(
+                    function() {
+                        //$(this).attr({ checked: '' });
+                        $(this).removeAttr("checked");
+                    }
+                    );
+                    //alert('取消全选');
+                }
+            }
+            );
+
+		        //删除
+		        $('#btndelete').click(function() {
+					var arrChk=$("input[name='checkhead']:checked"); 
+                    if ($(arrChk).length < 1) {
+                        alert('请先选择要删除的项！');
+                        return;
+                    }
+		            var strs = "";
+		            $(".checkbox").each(
+             function() {
+                 //   strs = $(this).attr("id");
+                 if ($(this).attr("checked") == "checked") {
+                     if (strs != "") {
+                         strs += "?";
+                     }
+                     //strs += $(this).attr("name");
+                     strs += $(this).attr("contentid");
+                     strs += ":";
+                     strs += $(this).attr("contentcid");
+                 }
+             }
+             );
+		            if (strs != "") {
+		                del(strs);
+
+		                //这里将得到的数据发送到服务器
+		                // alert(strs);
+		            } else {
+		                alert("请先选择要删除的项！");
+		            }
+
+		        });
+
+		        //新增
+		        $('#btnadd').click(function() {
+		            var cid = $(this).attr("cid");
+		            add(cid);
+		        });
+		        //编辑
+		        $('#btnedit').click(function() {
+					var arrChk=$("input[name='checkhead']:checked"); 
+                    if ($(arrChk).length > 1) {
+                        alert('一次只能选择一项进行编辑');
+                        return;
+                    }
+					if ($(arrChk).length <= 0) {
+                        alert('请先选择要编辑的项!');
+                        return;
+                    }
+		            //var strs = "";
+		            var vid = "";
+		            var vcid = "";
+		            $(".checkbox").each(
+             function() {
+                 //   strs = $(this).attr("id");
+                 if ($(this).attr("checked") == "checked") {
+
+                     vid = $(this).attr("contentid");
+                     vcid = $(this).attr("contentcid");
+                 }
+             }
+             );
+		            if (vid != "" && vcid != "") {
+
+		                //alert(vid + "    "+vcid);
+		                //这里将得到的数据发送到服务器
+		                edit(vid, vcid);
+		            } else {
+		                alert("请先选择要编辑的项！");
+		            }
+
+		        });
+				
+						        //修改记录
+		        $('#btnlog').click(function() {
+					var arrChk=$("input[name='checkhead']:checked"); 
+                    if ($(arrChk).length > 1) {
+                        alert('一次只能选择一项查看');
+                        return;
+                    }
+					if ($(arrChk).length <= 0) {
+                        alert('请先选择要查看修改记录的项!');
+                        return;
+                    }
+		            var vid = "";
+		            $(".checkbox").each(
+                      function() {
+                          if ($(this).attr("checked") == "checked") {
+
+                              vid = $(this).attr("editrecord");
+                          }
+                      }
+                     );
+		            if (vid != "") {
+		                log(vid);
+		            } else {
+		                alert("该项没有修改记录！");
+		            }
+		        });
+			}
+			);
+
+		</script>
+	<else />
+		<script type="text/javascript" charset="utf-8">
+		    $(document).ready(function() {
+		        $('#example').dataTable(
+				{
+				    "bPaginate": true,
+				    //"sScrollX": "100%",
+				    //"sScrollXInner": "110%",
+				    "bInfo": true,
+				    //"bAutoWidth": true,
+				    "bJQueryUI": true,
+				    "sPaginationType": "full_numbers",
+				    "bFilter": true
+				}
+				);
+
+		        $('.checkbox').click(
+                    function() {
+                        if ($(this).attr("checked") == "checked") { // 全选
+                            //alert('选择');
+
+                        }
+                        else {
+                            //alert('取消选择');
+                            if ($('#chkAll').attr("checked") == "checked") {
+                                $('#chkAll').removeAttr("checked");
+                            }
+                        }
+                        //$(this).attr({ checked: "checked" });
+                    }
+                    );
+
+
+		        $('#chkAll').click(
+            function() {
+                if ($(this).attr("checked") == "checked") { // 全选
+                    $('.checkbox').each(
+                    function() {
+                        $(this).attr({ checked: "checked" });
+                    }
+                    );
+                    //alert('全选');
+                }
+                else {
+                    $('.checkbox').each(
+                    function() {
+                        //$(this).attr({ checked: '' });
+                        $(this).removeAttr("checked");
+                    }
+                    );
+                    //alert('取消全选');
+                }
+            }
+            );
+
+		        //删除
+		        $('#btndelete').click(function() {
+					var arrChk=$("input[name='checkhead']:checked"); 
+                    if ($(arrChk).length < 1) {
+                        alert('请先选择要删除的项！');
+                        return;
+                    }
+		            var strs = "";
+		            $(".checkbox").each(
+             function() {
+                 //   strs = $(this).attr("id");
+                 if ($(this).attr("checked") == "checked") {
+                     if (strs != "") {
+                         strs += "?";
+                     }
+                     //strs += $(this).attr("name");
+                     strs += $(this).attr("contentid");
+                     strs += ":";
+                     strs += $(this).attr("contentcid");
+                 }
+             }
+             );
+		            if (strs != "") {
+		                del(strs);
+
+		                //这里将得到的数据发送到服务器
+		                // alert(strs);
+		            } else {
+		                alert("请先选择要删除的项！");
+		            }
+
+		        });
+
+		        //新增
+		        $('#btnadd').click(function() {
+		            var cid = $(this).attr("cid");
+		            add(cid);
+		        });
+		        //编辑
+		        $('#btnedit').click(function() {
+					var arrChk=$("input[name='checkhead']:checked"); 
+                    if ($(arrChk).length > 1) {
+                        alert('一次只能选择一项进行编辑');
+                        return;
+                    }
+					if ($(arrChk).length <= 0) {
+                        alert('请先选择要编辑的项!');
+                        return;
+                    }
+		            //var strs = "";
+		            var vid = "";
+		            var vcid = "";
+		            $(".checkbox").each(
+             function() {
+                 //   strs = $(this).attr("id");
+                 if ($(this).attr("checked") == "checked") {
+
+                     vid = $(this).attr("contentid");
+                     vcid = $(this).attr("contentcid");
+                 }
+             }
+             );
+		            if (vid != "" && vcid != "") {
+
+		                //alert(vid + "    "+vcid);
+		                //这里将得到的数据发送到服务器
+		                edit(vid, vcid);
+		            } else {
+		                alert("请先选择要编辑的项！");
+		            }
+
+		        });
+		        //修改记录
+		        $('#btnlog').click(function() {
+					var arrChk=$("input[name='checkhead']:checked"); 
+                    if ($(arrChk).length > 1) {
+                        alert('一次只能选择一项查看！');
+                        return;
+                    }
+					if ($(arrChk).length <= 0) {
+                        alert('请先选择要查看修改记录的项!');
+                        return;
+                    }
+		            var vid = "";
+		            $(".checkbox").each(
+                      function() {
+                          if ($(this).attr("checked") == "checked") {
+
+                              vid = $(this).attr("editrecord");
+                          }
+                      }
+                     );
+		            if (vid != "") {
+		                log(vid);
+		            } else {
+		                alert("该项没有修改记录！");
+		            }
+		        });
+		    });
+		</script>	
+	</if>
+</head>
+<body id = "bodycontent">
+    <div id="maincontent">
+        <if condition="$bHierarchi eq '1'">
+			<div class = "divSubTitle">{$cltInfo['CNAME']}
+			</div>
+			<div id='DivSearch'>
+		     <input type="button" value="删除" class="buttonOperate" id="btndelete">
+            <input type="button" value="编辑" class="buttonOperate" id="btnedit">
+            <input type="button" value="新增" class="buttonOperate" id="btnadd" cid = "{$cltInfo['CID']}">
+            <input type="button" value="修改记录" class="buttonOperatelong" id="btnlog">
+			<input type="button" value="导出" class="buttonOperate" onclick="exportData('{$cltInfo['CID']}')">
+			</div>	
+		<table class="treetable">
+			<thead>
+				<tr>
+					<th class = "ttCheckHead">
+						<input type="checkbox" id="chkAll">
+					</th>
+					<th class = "ttHead">
+						代码ID
+					</th >
+					<th class = "ttHead">
+						字段名称
+					</th>
+					<th class = "ttHead">
+						所属代码集
+					</th>
+					<th class = "ttHead cmt">
+						说明
+					</th>
+				</tr>
+			</thead>
+			<tbody id="treet1">
+				<volist name="list" id="vo">
+					<tr class="odd">
+						<td class = "tdCheck">
+                        <input type="checkbox"   name="checkhead" class ="checkbox" contentid = "{$vo.ID}" contentcid = "{$vo.CID}" editrecord = "{$vo.EDITRECORDID}">
+						</td>
+						<td>{$vo.ID}</td>
+						<td>{$vo.NAME}</td>
+						<td>{$vo.CNAME}</td>
+						<td>{$vo.CMT}</td>
+					</tr>
+				</volist>
+			</tbody>
+		</table>
+	 <else />
+			<div class = "divSubTitle">{$cltInfo['CNAME']}
+			</div>
+			<div id='DivSearch'>
+		     <input type="button" value="删除" class="buttonOperate" id="btndelete">
+            <input type="button" value="编辑" class="buttonOperate" id="btnedit">
+            <input type="button" value="新增" class="buttonOperate" id="btnadd" cid = "{$cltInfo['CID']}">
+            <input type="button" value="修改记录" class="buttonOperatelong" id="btnlog">
+			<input type="button" value="导出" class="buttonOperate" onclick="exportData('{$cltInfo['CID']}')">
+			
+			</div>	
+	   <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+			<thead>
+				<tr>
+					<th>
+						<input type="checkbox" id="chkAll">
+					</th>
+					<th>
+						代码ID
+					</th>
+					<th>
+						字段名称
+					</th>
+					<th>
+						所属代码集
+					</th>
+					<th>
+						说明
+					</th>
+				</tr>
+			</thead>
+			<tbody id="treet1">
+				<volist name="list" id="vo">
+					<tr class="odd">
+						<td class = "tdCheck">
+                        <input type="checkbox"  name="checkhead"  class ="checkbox" contentid = "{$vo.ID}" contentcid = "{$vo.CID}" editrecord = "{$vo.EDITRECORDID}">
+						</td>
+						<td>{$vo.ID}</td>
+						<td>{$vo.NAME}</td>
+						<td>{$vo.CNAME}</td>
+						<td>{$vo.CMT}</td>
+					</tr>
+				</volist>
+			</tbody>
+		</table>		  
+	 </if>
+    </div>
+</body>
+</html>

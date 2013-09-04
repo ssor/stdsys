@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <link rel='stylesheet' type='text/css' href='__PUBLIC__/Css/common.css'>
+    <script src="__PUBLIC__/Js/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="__PUBLIC__/Css/screen.css" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/Css/jquery.treeview.css" type="text/css" />
+
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.treeview.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#menutree").treeview();
+        });
+    </script>
+
+
+</head>
+<base target="frm_content" />
+<body>
+<div id = "divMenuScroll">
+    <ul id="menutree" class="filetree">
+        <li class="closed"><span class="folder">代码集 </span>
+            <ul>
+                <volist name='levelList' id='llvo'>
+					<li class="closed"><span class="folder">{$llvo.CL}</span>
+						<ul>
+							<volist name='codeCollectionlist' id='vo'>
+								<if condition = "$llvo['CL'] eq $vo['CL']">
+									<li>
+										<span class="file">
+										 <a href="__URL__/specialIndex/cid/{$vo.ID}">{$vo.NAME}</a>
+										</span>
+									</li>
+								</if>
+							 </volist>
+						</ul>
+					</li>
+				</volist>
+            </ul>
+        </li>
+        <li class="closed"><span class="folder">数据子集</span>
+            <ul>
+                <volist name='InfoClassNamelevelList' id='icnllvo'>
+                    <li class="closed"><span class="folder">{$icnllvo.CL}</span>
+                        <ul>
+                            <volist name='InfoClassNameList' id='icnvo'>
+                                <if condition="$icnllvo['CL'] eq $icnvo['CL']">
+                                     <li>
+              		                    <span class="file">
+                                           <a href="__URL__/InfoClassIndex/icid/{$icnvo.CID}">{$icnvo.NAME}</a>
+              		                    </span>
+              		                 </li>
+                                </if>
+                            </volist>
+                        </ul>
+                    </li>
+                </volist>
+            </ul>
+        </li>
+        <li class="closed"><span class="folder">
+                                <a href="__URL__/ruleIndex">编码规则</a>
+                            </span>
+            </li>
+            <li class="closed"><span class="folder"><a href="__URL__/InterfacesIndex">接口规范</a> </span>
+            </li>
+            <li class="closed"><span class="folder">自定义项目</span>
+                <ul>
+                    <volist name='CustomClassNamelist' id='rlvo'>
+                
+                <li>
+                    <span class="file">
+                        <a href="__URL__/CustomClassItemIndex/cid/{$rlvo.CID}">{$rlvo.NAME}</a>  
+                    </span>
+                 </li>
+                 </volist>
+                </ul>
+            </li>
+            <li class="closed"><span class="folder"><a href="__URL__/ChangeLogIndex/id/all">修改记录</a>
+            </span></li>
+
+        </ul>
+    </div>
+</body>
+</html>

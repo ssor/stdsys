@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <load href="__PUBLIC__/Js/prototype.js" />
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+</head>
+<body>
+
+    <script language="JavaScript">
+ <!--
+        function save() {
+            ThinkAjax.sendForm('form1', '__URL__/update', complete, 'result');
+        }
+        function complete(data, status) {
+            if (status == 1) {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+ //-->
+    </script>
+
+    <div id="maincontent">
+        <div class="divSubTitle">
+            增加用户
+        </div>
+        <div id="divSubTitleTip">
+            在这里添加新用户
+        </div>
+        <form id="form1" class="formInput" method='post' action="__URL__/UserInsert">
+        <div class='DivOperateUpNoOperate'>
+        </div>
+        <p>
+            <label class="labelLeft">
+                账号：</label>
+            <input type="text" name="username" class="inputRight" value="">
+        </p>
+        <p>
+            <label class="labelLeft">
+                名称：</label>
+            <input type="text" name="nickname" class="inputRight" value="">
+        </p>
+        <p>
+            <label class="labelLeft">
+                密码：</label>
+            <input type="password" name="password" class="inputRight" value="">
+        </p>
+        <p>
+            <label class="labelLeft">
+                邮箱：</label>
+            <input type="text" name="email" class="inputRight" value="">
+        </p>
+        <p>
+            <label class="labelLeft">
+                所属角色：</label>
+            <select name="roleName" class="selectorLayout">
+                <volist name='roleList' id='vo'>
+						<option value ="{$vo.NAME}" selected="selected">
+							{$vo.CNAME}
+						</option>  
+				</volist>
+            </select>
+        </p>
+               <div class='DivOperateDown'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate" value="清空">
+        </div>
+        </form>
+    </div>
+</body>
+</html>

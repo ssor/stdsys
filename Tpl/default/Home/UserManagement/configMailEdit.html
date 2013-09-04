@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>信息标准管理系统</title>
+    <load href='__PUBLIC__/Css/common.css' />
+    <load href="__PUBLIC__/Js/Base.js" />
+    <load href="__PUBLIC__/Js/prototype.js" />
+    <load href="__PUBLIC__/Js/mootools.js" />
+    <load href="__PUBLIC__/Js/Ajax/ThinkAjax.js" />
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+
+
+</head>
+<body id = "bodycontent">
+
+    <script language="JavaScript">
+        $(document).ready(function() {
+        $(".btnTest").click(function() {
+            window.location.href = "__URL__/testConfig";
+        
+            });
+        });
+        function save() {
+            ThinkAjax.sendForm('form1', '__URL__/update', complete, 'result');
+        }
+        function complete(data, status) {
+            if (status == 1) {
+                window.setTimeout(function() { window.location.href = '__URL__', 20000 });
+            }
+        }
+    </script>
+
+    <div id="maincontent">
+        <div class="divSubTitle">
+            邮件服务器设置
+        </div>
+        <div id="divSubTitleTip">
+            在这里对邮件服务器进行设置，订阅的相关的邮件通知通过此邮件服务器发送
+        </div>
+        <form id="form1" class="formInput" method='post' action="__URL__/configMailSave">
+                <div class='DivOperateUpNoOperate'>
+                <!-- 
+             <input type="submit" class="buttonOperate" value="保存">
+            <input type="button" class="buttonOperate btnTest" value="测试"  id="btnTest">               
+                 -->
+
+        </div>
+        <p>
+            <label class="labelLeft">
+                发送邮件地址：</label>
+            <input type="text" name="email" class="inputRight" value="{$email}"
+               >
+        </p>
+        <p>
+            <label class="labelLeft">
+                SMTP服务器：</label>
+            <input type="text" name="smtp" class="inputRight" value="{$smtp}">
+        </p>
+        <p>
+            <label class="labelLeft">
+                账号：</label>
+            <input type="text" name="user" class="inputRight" value="{$user}">
+        </p>
+        <p>
+            <label class="labelLeft">
+                密码：</label>
+            <input type="password" name="pwd" class="inputRight" value="{$pwd}">
+            <p>
+                <label class="labelLeft">
+                    服务器验证：</label>
+                <select name="authen" class="selectorLayout">
+                    <option value="true"
+                    		<if condition="$authen eq 'true'">
+								 selected="selected"
+							 </if>
+                    
+                    >是</option>
+                    <option value="false"                     		<if condition="$authen eq 'false'">
+								 selected="selected"
+							 </if>
+					>否</option>
+                </select>
+            </p>
+
+                    <div class='DivOperateDown'>
+            <input type="submit" class="buttonOperate" value="保存">
+            <input type="reset" class="buttonOperate btnTest" value="测试"  id="btnTest">
+        </div>
+        </form>
+    </div>
+</body>
+</html>

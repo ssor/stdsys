@@ -1,0 +1,347 @@
+/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body {
+    background-color: #eaeeef;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Verdana, Arial, Sans-Serif;
+    color: #343434;
+    min-width: 960px;
+}
+
+a:link {
+    color: #034af3;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #505abc;
+}
+
+a:hover {
+    color: #1d60ff;
+    text-decoration: none;
+}
+
+a:active {
+    color: #12eb87;
+}
+
+/* HEADINGS
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5em;
+    color: #006600;
+}
+
+h1, h2 {
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+/* PRIMARY LAYOUT ELEMENTS
+----------------------------------------------------------*/
+#page {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    #header {
+        position: relative;
+        margin-bottom: 0;
+        color: #000;
+        padding: 0;
+    }
+
+    #main {
+        padding: 30px 30px 15px 30px;
+        background-color: #fff;
+        margin-bottom: 30px;
+
+        /*CSS3 properties*/
+        border-radius: 4px 0 4px 4px;
+        -webkit-border-radius: 4px 0 4px 4px;
+        -moz-border-radius: 4px 0 4px 4px;
+    }
+
+    #footer {
+        padding: 10px 0;
+        text-align: center;
+        line-height: normal;
+        margin: 0;
+        font-size: .9em;
+    }
+
+/* Floated section definitions
+----------------------------------------------------------*/
+.floatLeftSection {
+    float: left;
+    width: 45%;
+    padding: 5px;
+    text-align: center;
+}
+
+.floatRightSection {
+    float: right;
+    width: 45%;
+    padding: 5px;
+    text-align: center;
+}
+
+.resultsDetail {
+    text-align: left; 
+    padding: 10px; 
+    background-color: #e8eef4;
+    line-height: 150%;
+}
+
+#loadingMessage {
+    display:none;
+    position: absolute; 
+    width: 100%; 
+    left: 0px; 
+    top: 300px;
+    text-align: center;
+}
+
+
+/* HTML tables, headings, and row cells
+----------------------------------------------------------*/
+.htmlTableList {
+    border-collapse: collapse;
+}
+
+.htmlTableList caption {
+    font-weight: bold;
+    padding: 15px 10px;
+    font-size: 18px;
+}
+
+.htmlTableList th {
+    font-weight: bold;
+    padding: 4px 5px;
+    border: 2px solid #669900;
+    background: #669900;
+    color: #FFFFFF;
+}
+
+.htmlTableList td {
+    padding: 2px;
+    border: 2px solid #669900;
+    background: #e8eef4;
+    padding: 4px 5px;
+}
+
+.tableCellAlignLeft {
+   text-align:left;
+}
+
+.tableSelectList {
+    color: #696969;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+}
+
+.htmlTableList a:link {
+    color: #696969;
+    text-decoration: none;
+}
+
+.htmlTableList a:visited {
+    color: #696969;
+    text-decoration: none;
+}
+
+.htmlTableList a:hover {
+    text-decoration: underline;
+}
+
+.adminTableHeader a:link {
+    color:#ffffff;
+}
+
+.adminTableHeader a:visited {
+    color:#ffffff;
+}
+
+/* Site Title
+----------------------------------------------------------*/
+#header .site-title {
+    float: left;
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-size: 32px;
+
+    /*CSS3 properties*/
+    text-shadow: 1px 1px 2px #111;
+}
+
+/* News page
+----------------------------------------------------------*/
+.newsimage {
+    float:left;
+    margin: 0 15px 15px 0;
+    padding: 5px;
+    border: 1px solid #aaa;
+}
+
+.news-header {
+  cursor: pointer;
+}
+
+.news-header:hover {
+  text-decoration: underline;
+}
+
+/* Login Display
+----------------------------------------------------------*/
+#login_box {
+    float: right;
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    color: #000;
+}
+
+    #login li {
+        margin: 0;
+        display: inline;
+        list-style: none;
+        padding-left: 5px;
+    }
+
+    #login a:link, #login a:visited {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    #login a:hover
+    {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+
+/* forms
+----------------------------------------------------------*/
+fieldset {
+    background-color: green;
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #CCC;
+}
+
+    fieldset legend {
+        font-size: 1.1em;
+        font-weight: bold;
+        padding: 2px 4px 8px 4px;
+    }
+
+    fieldset ol {
+        padding: 0;
+        list-style: none;
+    }
+
+        fieldset ol li {
+            padding-bottom: 5px;
+        }
+
+    fieldset label {
+        display: block;
+    }
+
+    fieldset label.checkbox {
+        display: inline;
+    }
+
+    fieldset input[type="text"], input[type="password"], input[type="file"]  {
+        border: 1px solid #ccc;
+        padding: 2px;
+        font-size: 1.2em;
+        color: #444;
+        width: 300px;
+    }
+    
+    fieldset textarea {
+        font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+        border: 1px solid #ccc;
+        padding: 2px;
+        color: #444;
+        width: 300px;
+    }
+
+    fieldset input[type="submit"] {
+        font-size: 1.2em;
+        padding: 5px;
+    }
+
+ /* Information and errors
+----------------------------------------------------------*/
+.message {
+    clear: both;
+    border: 1px solid;
+    margin: 10px 0px;
+    padding: 15px 15px;
+
+    /*CSS3 properties*/
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 2px 2px 5px #888;
+    -webkit-box-shadow: 2px 2px 5px #888;
+    -moz-box-shadow: 2px 2px 5px #888;
+}
+
+.info {
+    background: #bde5f8;
+    color: #00529b;
+}
+
+.error {
+    background: #ffe4e4;
+    color: #be3e16;
+}
+
+.success {
+    background: #dff2bf;
+    color: #4f8a10;
+}
+
+input[type="text"].error-field, input[type="password"].error-field,
+textarea.error-field {
+    border: solid 1px #be3e16;
+    background-color: #ffe4e4;
+}
+
+.validation-error {
+    display: inline;
+    color: #be3e16;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+    .validation-error:before {
+        content: "»";
+    }

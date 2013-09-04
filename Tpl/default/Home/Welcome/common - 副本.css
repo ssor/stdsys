@@ -1,0 +1,14 @@
+
+
+
+.ThinkAjax{position:absolute; z-index:1000; letter-spacing:2px;display:none; top:5px; right:5px; padding:5px 20px 5px 10px; font-weight:bold; border:1px solid gray; color:blue; background:#FFF ; background-position:3px 40%; font-family:微软雅黑,Tahoma,Helvetica,sans}
+#loader{display:block; position:absolute; top:0px; right:0px; padding:5px 20px 5px 30px; z-index:2; font-weight:bold; border:1px solid gray; color:#00F; background:#FFF url('../Images/loading2.gif') no-repeat; background-position:3px 40%; FILTER:Alpha(opacity=75); font-family:Tahoma,Helvetica,sans}
+.think_run_time{text-align:center; width:95%}
+
+.folder{padding:3px; border:1px solid gray; float:left; width:78px; margin:5px}
+.folder a, a:hover{border:none}
+.image{ width:800px;}
+.image table{ float:left; height:140px;}
+#lightbox{position:absolute; z-index:1000; display:none; padding:2px; font-weight:bold; border:1px solid silver; background:white; font-family:Tahoma,Helvetica,sans}
+#overlay{ DISPLAY:none;  Z-INDEX:998;  filter:alpha(opacity=80);       LEFT:0px;       WIDTH:100%;       POSITION:absolute;       TOP:0px;       HEIGHT:100%;   background:#000 url(../Images/overlay.png);  moz-opacity:0.8;  opacity:.80}
+.guestbook{padding:3px; margin:0px; line-height:150%; height:248px; width:75%; border:1px solid silver;background:#E9E9F3;font-family:Tahoma,Arial,Helvetica,sans-serif; overflow:auto}
